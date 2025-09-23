@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>이혜지의 모험</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="section_box">
+        <section id="section1">
+            <div class="enter-btn-wrap">
+                <div class="particle-container" id="particles"></div>
+                <button class="enter-btn" onclick="goToSection(2)">입장하기</button>
+            </div>
+
+            <img src="images/bg1.png" alt="" class="bg">
+            <div class="daram_box">
+                <img src="images/1.png" alt="" class="daram">
+                <img src="images/1-2.png" alt="" class="daram2">
+            </div>
+            <div id="particleOverlay" class="particle-container" aria-hidden="true"></div>
+        </section>
+
+        <section id="section2">
+            <div class="bg_wrap">
+                <img src="images/bg3.png" alt="" class="bg">
+                <div class="yusung"></div>
+            </div>
+            <div class="frame">
+                <figure class="thumb">
+                    <figcaption class="minFont">POPUP</figcaption>
+                    <img src="images/popup/달콤스쿱.png" alt="">
+                </figure>
+            </div>
+
+            <div class="circle_box">
+                <ul> 
+                    <li><div class="circle circle2"><img src="images/popup/verysand.png" alt=""></div></li>
+                    <li><div class="circle circle3"><img src="images/popup/energyfit.png" alt=""></div></li>
+                    <li><div class="circle circle4"><img src="images/popup/sparklime.png" alt=""></div></li>
+                    <li><div class="circle circle5"><img src="images/popup/sweetscoops.png" alt=""></div></li>
+                    <li><div class="circle circle6"><img src="images/popup/BLACK FRIDAY.png" alt=""></div></li>
+                    <li><div class="circle circle6"><img src="images/popup/sweetscoops.png" alt=""></div></li>
+                    <!-- <li><div class="circle circle2"><img src="images/popup/베리샌드.png" alt="베리샌드"></div></li>
+                    <li><div class="circle circle3"><img src="images/popup/에너핏.png" alt="에너핏"></div></li>
+                    <li><div class="circle circle4"><img src="images/popup/스파클라임.png" alt="스파클라임"></div></li>
+                    <li><div class="circle circle5"><img src="images/popup/특가쿠폰.png" alt="특가쿠폰"></div></li>
+                    <li><div class="circle circle6"><img src="images/popup/BLACK FRIDAY.png" alt="BLACK FRIDAY"></div></li>
+                    <li><div class="circle circle6"><img src="images/popup/달콤스쿱.png" alt="달콤스쿱"></div></li> -->
+                </ul>
+            </div>
+            <div class="daram_box">
+                <!-- <img src="images/2.png" alt="dd" class="daram"> -->
+            </div>
+            <div class="dotory">
+                <img src="images/dotory.png" alt="">
+            </div>
+            <div class="dotory2 gogogo">
+                <a href="scene33.html"><img src="images/dotory.png" alt=""></a>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/action.js"></script>
+<script> 
+
+        // 별들 생성
+        function createStars() {
+            const starCount = 150;
+            const container = document.querySelector('.bg_wrap .yusung'); // 
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 30 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.position = "absolute"; // ★ 필요
+                
+                container.appendChild(star);
+            }
+        }
+
+
+        // 초기화
+        function init() {
+            createStars();
+            startMeteorGeneration();
+            
+            // 첫 유성은 바로 생성
+            setTimeout(createMeteor, 1000);
+        }
+
+        // 페이지 로드 시 시작
+        window.addEventListener('load', init);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>이혜지의 포트폴리오</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="section_box">
+        <section id="section4">
+            <div class="bg_wrap">
+                <img src="images/bg5.png" alt="" class="bg5">
+                <img src="images/bg5_hill.png" alt="" class="bg_hill">
+                <div class="yusung"></div>
+            </div>
+
+            <div class="btn_click">
+                <div class="btn"></div>
+            </div>
+            <div class="daram4">
+                <div class="ddo">
+                    <img src="images/4.png" alt="" class="daramji4">
+                    <img src="images/1-2.png" alt="" class="daramji4-2">
+                    <span class="ddo_shadow"></span>
+                </div>
+            </div>
+            <div class="textbox">
+                <p>
+                    배움과 성장은 <br>
+                    쉼 없이 이어지지만,<br><br>
+                </p>
+
+                <p>
+                    잠시 눈을 들어 <br>
+                    별빛을 바라보는 <br>
+                    순간이 있어야 <br><br>
+                </p>
+
+                <p>
+                    그 여정이 더욱 <br>
+                    빛난다고 믿습니다.”<br><br>
+                </p>
+                <p><span class="go_home">같이 쉬러 갈까요</span></p>
+            </div>
+        </section>
+
+
+        <!-- section5 -->
+        <section id="section5">
+            <a href="#" class="door">Knock</a>
+
+            <div class="btn_click">
+                <div class="btn"></div>
+            </div>
+            <div class="daram5">
+                <div class="ddo_box">
+                    <img src="images/5.png" alt="" class="daramji5">
+                    <img src="images/1-2.png" alt="333" class="daramji5-2">
+                </div>
+            </div>
+
+            <div class="bg_wrap">
+                <img src="images/bg6.png" alt="" class="bg">
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/action.js"></script>
+    <script> 
+        let meteorFrequency = 500; // 유성 생성 빈도 (ms)
+        let meteorInterval;
+
+        // 별들 생성
+        function createStars() {
+            const starCount = 150;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 30 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                document.body.appendChild(star);
+            }
+        }
+
+        // 유성 생성
+        function createMeteor() {
+            // .yusung 컨테이너를 찾거나 없으면 body 사용
+            const container = document.querySelector('.bg_wrap .yusung') || document.body;
+            
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor';
+            
+            // 유성 본체
+            const head = document.createElement('div');
+            head.className = 'meteor-head';
+            meteor.appendChild(head);
+            
+            // 유성 꼬리
+            const tail = document.createElement('div');
+            tail.className = 'meteor-tail';
+            meteor.appendChild(tail);
+            
+            // 거리감 설정 (멀리 있을수록 작고 느리게)
+            const distance = Math.random();
+            let scale, speed, tailLength;
+            
+            if (distance < 0.3) {
+                meteor.classList.add('far');
+                scale = 0.3;
+                speed = 3000 + Math.random() * 2000; // 느리게
+                tailLength = 20 + Math.random() * 30;
+            } else if (distance < 0.7) {
+                meteor.classList.add('medium');
+                scale = 0.6;
+                speed = 2000 + Math.random() * 1500;
+                tailLength = 40 + Math.random() * 40;
+            } else {
+                meteor.classList.add('near');
+                scale = 1;
+                speed = 1000 + Math.random() * 1000; // 빠르게
+                tailLength = 60 + Math.random() * 60;
+            }
+            
+            // 컨테이너의 크기 가져오기
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width || window.innerWidth;
+            const containerHeight = containerRect.height || window.innerHeight;
+            
+            // 시작 위치와 끝 위치 설정 (컨테이너 기준)
+            const startX = Math.random() * (containerWidth + 200) - 100;
+            const startY = -50;
+            const endX = startX + (200 + Math.random() * 300);
+            const endY = containerHeight + 50;
+            
+            // 유성의 이동 방향 계산
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
+            
+            // 이동 방향의 각도 계산 (라디안)
+            const angle = Math.atan2(deltaY, deltaX);
+            
+            // 꼬리는 이동 방향의 반대로 설정 (180도 회전)
+            const tailAngle = angle + Math.PI; // 180도 추가
+            const tailAngleDegrees = tailAngle * (180 / Math.PI);
+            
+            // 꼬리 길이와 회전 설정
+            tail.style.width = tailLength + 'px';
+            tail.style.transform = `rotate(${tailAngleDegrees}deg) translateY(-50%)`;
+            
+            meteor.style.left = startX + 'px';
+            meteor.style.top = startY + 'px';
+            meteor.style.zIndex = '-1'; // bg5_hill이 유성 위에 오도록
+            
+            // CSS 변수로 애니메이션 값 전달
+            meteor.style.setProperty('--scale', scale);
+            meteor.style.setProperty('--end-x', deltaX + 'px');
+            meteor.style.setProperty('--end-y', deltaY + 'px');
+            
+            container.appendChild(meteor);
+            
+            // 애니메이션 시작
+            setTimeout(() => {
+                meteor.classList.add('falling');
+                meteor.style.animationDuration = speed + 'ms';
+            }, 10);
+            
+            // 애니메이션 완료 후 제거
+            setTimeout(() => {
+                if (meteor.parentNode) {
+                    meteor.parentNode.removeChild(meteor);
+                }
+            }, speed + 100);
+        }
+
+        // 유성 생성 빈도 조절
+        function setMeteorFrequency(frequency) {
+            meteorFrequency = frequency;
+            clearInterval(meteorInterval);
+            startMeteorGeneration();
+        }
+
+        // 유성우 효과
+        function createMeteorShower() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createMeteor(), i * 200);
+            }
+        }
+
+        // 유성 생성 시작
+        function startMeteorGeneration() {
+            meteorInterval = setInterval(() => {
+                createMeteor();
+            }, meteorFrequency);
+        }
+
+        // 초기화
+        function init() {
+            createStars();
+            startMeteorGeneration();
+            
+            // 첫 유성은 바로 생성
+            setTimeout(createMeteor, 1000);
+        }
+
+        // 페이지 로드 시 시작
+        window.addEventListener('load', init);
+    </script>
+
+    <script>
+        $('.go_home').click(function(){
+            $(this).text('YES')
+            $('#section4 .daram4').addClass('on');;
+            $('#section4 .daram4 .ddo').addClass('on');
+
+            setTimeout(function(){
+            $('#section4').fadeOut()
+                $('#section5').fadeIn()
+            },2000)
+            
+        })
+
+
+                
+        //section5
+        $('#section5 .door').click(function(){
+            $(' #section5 .daram5').addClass('on');
+            $(' #section5 .door').addClass('on');
+            $(' #section5 .daram5 .daramji5-2').show().siblings().hide();
+            setTimeout(function(){
+                window.location.href = 'scene67.html'
+            },2000);
+        });
+    </script>
+
+</body>
+
+</html>

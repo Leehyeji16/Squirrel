@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>제목</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="section_box">
+        <section id="section3">
+
+            <div class="btn_click">
+                <div class="btn"></div>
+            </div>
+
+            <div class="dotory_dongdong gogogo">
+                <a href="scene45.html"><img src="images/dotory_water.png" alt="" class="dotory_water"></a>
+            </div>
+
+            <img src="images/bg4.png" alt="" class="bg">
+            <div class="box">
+                <img src="images/box.png" alt="" class="box1">
+                <img src="images/box_open.png" alt="" class="box_open">
+            </div>
+            <img src="images/dotory_pre.png" alt="" class="dotory_pre">
+
+            <div class="daram_box">
+                <img src="images/3.png" alt="" class="daram1">
+                <img src="images/3-2.png" alt="" class="daram2">
+            </div>
+
+            <div class="banner_box">
+                <ul>
+                    <li><img src="images/banner/deepsound.png" alt=""></li>
+                    <li><img src="images/banner/landship.png" alt=""></li>
+                    <li><img src="images/banner/warmhouse.png" alt=""></li>
+                    <li><img src="images/banner/bailresolution.png" alt=""></li>
+                    <li><img src="images/banner/water.png" alt=""></li>
+                    <li><img src="images/banner/aquaship.png" alt=""></li>
+                    <li><img src="images/banner/glowessence.png" alt=""></li>
+                    <li><img src="images/banner/energyup.png" alt=""></li>
+                </ul>
+            </div>
+            <div id="particleOverlay" class="particle-container" aria-hidden="true"></div>
+        </section>
+
+
+
+    </div>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/action.js"></script>
+
+    <script>
+        let classNum = 0
+        $(window).keyup(function(e){
+            if(e.key == 'ArrowDown'){
+                if(classNum > 3){
+                    console.log(classNum);
+                    setTimeout(function(){
+                        $('#section3 .dotory_dongdong').addClass('on')
+                    },1000)
+                    
+                }
+                if(classNum < 6){
+                    classNum++
+                    $('#section3 .daram_box').removeClass('on'+(classNum-1))
+                    $('#section3 .daram_box').addClass('on'+classNum)
+                    $('#section3 .dotory_pre').addClass('on'+classNum)
+                    
+                    $('#section3 img.bg').removeClass('on'+(classNum-1))
+                    $('#section3 img.bg').addClass('on'+classNum)
+                    
+                    $('#section3 .box').addClass('on'+classNum)
+
+                    setTimeout(function(){
+                        $('#section3 .box1').addClass('on'+classNum)
+                        $('#section3 .box_open').addClass('on'+classNum)
+                        $('#section3 .banner_box').addClass('on'+classNum)
+                    },1000)
+                }
+                if(classNum >= 6){
+                    setTimeout(function(){
+                        $('#section3 .daram_box').addClass('on')
+                        $('#section3 .dotory_pre').hide()
+                    },200)
+                }
+            }
+            // if(e.key == 'ArrowUp'){
+            //     classNum--
+            //     $('#section3 .daram_box').removeClass('on'+(classNum+1))
+            //     $('#section3 .daram_box').addClass('on'+classNum)
+
+            //     $('#section3 img.bg').removeClass('on'+(classNum+1))
+            //     $('#section3 img.bg').addClass('on'+classNum)
+            //     console.log(classNum);
+            // }
+        })
+    </script>
+</body>
+
+</html>
