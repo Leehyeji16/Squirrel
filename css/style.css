@@ -1,8 +1,16 @@
 @charset "UTF-8";@import url(reset.css); @import url(font.css);
 
-.blank {text-align: center; padding-top: 20px;}
-.dark {}
+
 body {min-width: 1920px;min-height: 1080px;background: #000; overflow: hidden; } 
+
+.blankdark {padding-top: 40px}
+.img-app1sub {display: flex;justify-content: center;}
+.img-app1sub img {width: 1150px;height: 800px;margin-top: 15px;}
+.img-app2sub {display: flex;justify-content: center;}
+.img-app2sub img {width: 1000px;height: 700px;margin-top: 65px}
+.img-app3 {display: flex;justify-content: center;}
+.img-app3 img {width: 800px;height: 800px;margin-top: 15px;}
+
 body:before {content: "1920x1080모니터에 최적화되있습니다."; position: absolute; background: #000; color: #fff; padding: 5px; z-index: 10;}
 section {min-width: 1920px;min-height: 1080px; height: 100vh; overflow: hidden; position: absolute; /* left: 50%; top: 50%; transform: translate(-50%,-50%); */ display: none; } 
 
